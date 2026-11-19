@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Akol Madol Atak Kuot</title>
+<meta name="description" content="Portfolio of Akol Madol Atak Kuot, medical student at Gulf Medical University, Ajman.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a blood-typing card brought to life. White paper, light-blue cells that agglutinate, serif names, mono lab labels. */
+:root{
+  --paper:#FFFFFF;
+  --wash:#EEF5FD;
+  --sky:#D3E6FA;
+  --accent:#1D69BD;
+  --ink:#0B2541;
+  --muted:#4F6781;
+  --sky-deep:#A7CBF1;
+  --line:#DDE8F4;
+  --accent-2:#4A93E0;
+  --font-display:"Instrument Serif","Iowan Old Style",Georgia,serif;
+  --font-body:"Hanken Grotesk","Segoe UI",system-ui,-apple-system,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+  --r:22px;
+  --shadow:0 1px 2px rgba(11,37,65,.05),0 22px 48px -22px rgba(29,105,189,.32);
+  --max:1200px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--accent);text-decoration:none}
+button{font-family:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:8px}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding-left:clamp(18px,4vw,44px);padding-right:clamp(18px,4vw,44px)}
+.mono{font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:#fff;padding:8px 14px;border-radius:8px;z-index:200}
+.skip:focus{left:12px}
+
+/* ================= NAV (floating pill) ================= */
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:90;width:min(calc(100% - 24px),1120px);display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 8px 8px 10px;border-radius:999px;background:rgba(255,255,255,.78);backdrop-filter:saturate(1.5) blur(16px);-webkit-backdrop-filter:saturate(1.5) blur(16px);border:1px solid rgba(167,203,241,.55);transition:box-shadow .3s,background .3s}
+.nav.scrolled{box-shadow:0 12px 34px -16px rgba(11,37,65,.28);background:rgba(255,255,255,.9)}
+.brand{display:flex;align-items:center;gap:10px;color:var(--ink);padding-right:6px}
+.mark{width:38px;height:38px;border-radius:50%;background:var(--wash);border:1px solid var(--sky-deep);display:grid;place-items:center;font-family:var(--font-display);font-size:18px;color:var(--accent);flex:none}
+.brand b{font-weight:600;font-size:14.5px;white-space:nowrap}
+.links{display:flex;align-items:center;gap:2px;list-style:none;margin:0;padding:0;position:relative}
+.links a{position:relative;z-index:1;display:block;padding:8px 13px;border-radius:999px;color:var(--muted);font-size:14px;font-weight:500;transition:color .25s}
+.links a:hover{color:var(--ink)}
+.links a.active{color:var(--accent)}
+.links a.cta{background:var(--accent);color:#fff;margin-left:6px;padding:9px 16px}
+.links a.cta:hover{background:#155aa6}
+.links a.cta.active{color:#fff;box-shadow:0 0 0 3px var(--sky)}
+.blob{position:absolute;z-index:0;top:0;height:100%;border-radius:999px;background:var(--wash);border:1px solid var(--sky);transition:left .35s cubic-bezier(.2,.7,.2,1),width .35s cubic-bezier(.2,.7,.2,1),opacity .25s;opacity:0;pointer-events:none}
+.menu-btn{display:none;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--paper);cursor:pointer;place-items:center}
+.menu-btn svg{width:20px;height:20px}
+
+/* ================= HERO ================= */
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 78% 30%,#E4F0FC 0%,rgba(238,245,253,.6) 38%,var(--paper) 72%);isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 1px 1px,rgba(29,105,189,.12) 1px,transparent 0) 0 0/28px 28px;mask-image:linear-gradient(180deg,#000 0%,#000 60%,transparent 100%);-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 60%,transparent 100%);z-index:-1}
+#cells{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-in{position:relative;z-index:2;min-height:clamp(640px,60vw,840px);display:grid;grid-template-columns:1.15fr .85fr;align-items:center;padding-top:120px;padding-bottom:56px;pointer-events:none}
+.hero-in a,.hero-in button{pointer-events:auto}
+.hero-text{position:relative;z-index:3;max-width:660px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;padding:7px 14px 7px 9px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid var(--line);font-size:13.5px;color:var(--muted);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.eyebrow .dot{width:9px;height:9px;border-radius:50%;background:var(--accent);position:relative}
+.eyebrow .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--accent);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{transform:scale(.55);opacity:.55}100%{transform:scale(1.7);opacity:0}}
+.name{font-family:var(--font-display);font-size:clamp(58px,8.2vw,124px);line-height:.86;letter-spacing:-.025em;margin:26px 0 26px;color:var(--ink)}
+.name .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.name .ln>span{display:inline-block}
+.name .it{font-style:italic;color:var(--accent);padding-left:.04em}
+.lead{font-size:clamp(17.5px,1.55vw,20.5px);color:var(--muted);max-width:31em;line-height:1.6}
+.lead strong{color:var(--ink);font-weight:600}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:15.5px;border:1px solid transparent;cursor:pointer;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s,background .25s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn svg{width:18px;height:18px;flex:none}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 12px 26px -12px rgba(29,105,189,.75)}
+.btn-primary:hover{background:#155aa6}
+.btn-ghost{background:rgba(255,255,255,.9);color:var(--ink);border-color:var(--sky-deep)}
+.btn-ghost:hover{background:var(--wash)}
+.vitals{display:flex;flex-wrap:wrap;gap:0;margin:38px 0 0;padding:0;max-width:640px}
+.vitals div{padding:12px 22px 0 0;margin-right:22px;border-right:1px solid var(--line);border-top:1px solid var(--line)}
+.vitals div:last-child{border-right:0;margin-right:0}
+.vitals dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.vitals dd{margin:2px 0 0;font-weight:600;font-size:15px}
+.hint{display:inline-flex;align-items:center;gap:9px;margin-top:26px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;color:var(--muted)}
+.hint i{width:16px;height:16px;border-radius:50%;border:1.5px dashed var(--accent);display:block;animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.figure{position:absolute;z-index:2;right:max(8px,calc((100vw - var(--max))/2 + 10px));bottom:0;height:min(calc(100% - 100px),50vw,720px);aspect-ratio:820/1180;pointer-events:none}
+.ring{position:absolute;left:50%;top:4%;width:104%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 50% 45%,#fff 0%,#F3F8FE 46%,var(--sky) 100%);border:1px solid var(--sky-deep);box-shadow:inset 0 0 0 14px rgba(255,255,255,.55),0 40px 80px -40px rgba(29,105,189,.45)}
+.ring::after{content:"";position:absolute;inset:7%;border-radius:50%;border:1px dashed rgba(29,105,189,.35)}
+.ring-text{position:absolute;left:50%;top:4%;width:122%;aspect-ratio:1;transform:translate(-50%,-8.2%);animation:spin 70s linear infinite}
+.ring-text text{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.32em;fill:var(--accent);text-transform:uppercase}
+.cutout{position:absolute;left:0;right:0;bottom:0;margin:auto;height:100%;width:auto;max-width:none;filter:drop-shadow(0 30px 40px rgba(11,37,65,.18));-webkit-mask-image:linear-gradient(180deg,#000 82%,transparent 99%);mask-image:linear-gradient(180deg,#000 82%,transparent 99%)}
+.float{position:absolute;z-index:3;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:16px;background:rgba(255,255,255,.88);border:1px solid var(--line);box-shadow:var(--shadow);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);font-size:13.5px;line-height:1.25;white-space:nowrap}
+.float .fi{width:34px;height:34px;border-radius:10px;background:var(--wash);display:grid;place-items:center;color:var(--accent);flex:none}
+.float .fi svg{width:18px;height:18px}
+.float b{display:block;font-size:14px}
+.float span{color:var(--muted);font-size:12.5px}
+.f1{left:-8%;top:26%;animation:bob 6s ease-in-out infinite}
+.f2{right:-10%;top:56%;animation:bob 7s ease-in-out -2s infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.scroll-cue{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
+.scroll-cue i{width:1px;height:34px;background:linear-gradient(var(--accent),transparent);display:block;animation:cue 2.2s ease-in-out infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* load sequence */
+@media (prefers-reduced-motion:no-preference){
+  .name .ln>span{animation:lineUp 1s cubic-bezier(.2,.75,.15,1) both}
+  .name .ln:nth-child(2)>span{animation-delay:.12s}
+  .ld{animation:rise .9s cubic-bezier(.2,.75,.15,1) both}
+  .ld1{animation-delay:.05s}.ld2{animation-delay:.3s}.ld3{animation-delay:.4s}.ld4{animation-delay:.5s}.ld5{animation-delay:.6s}
+  .figure{animation:figIn 1.3s cubic-bezier(.2,.75,.15,1) .1s both}
+  .ring{animation:ringIn 1.4s cubic-bezier(.2,.75,.15,1) both}
+}
+@keyframes lineUp{from{transform:translateY(105%)}to{transform:none}}
+@keyframes rise{from{opacity:.0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes figIn{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes ringIn{from{transform:translateX(-50%) scale(.7);opacity:0}to{transform:translateX(-50%) scale(1);opacity:1}}
+
+/* ================= MARQUEE ================= */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper);overflow:hidden;padding:20px 0;position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;top:0;bottom:0;width:90px;z-index:1;pointer-events:none}
+.marquee::before{left:0;background:linear-gradient(90deg,var(--paper),transparent)}
+.marquee::after{right:0;background:linear-gradient(270deg,var(--paper),transparent)}
+.track{display:flex;width:max-content;animation:marq 42s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.track span{display:inline-flex;align-items:center;gap:34px;padding-right:34px;font-family:var(--font-display);font-size:clamp(28px,3.4vw,44px);line-height:1.1;white-space:nowrap;color:var(--ink)}
+.track span:nth-child(even){font-style:italic;color:var(--accent)}
+.track svg{width:22px;height:22px;color:var(--sky-deep);flex:none}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* ================= SECTIONS ================= */
+section{scroll-margin-top:90px}
+.sec{padding:clamp(80px,10vw,136px) 0;position:relative}
+.band{background:linear-gradient(180deg,var(--wash),#F6FAFE);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:1.1fr .9fr;gap:20px 64px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
+.sec-head h2{font-family:var(--font-display);font-size:clamp(44px,6vw,80px);line-height:.98;letter-spacing:-.02em;margin-top:14px}
+.sec-head h2 em{color:var(--accent)}
+.sec-head p{color:var(--muted);max-width:32em;font-size:17.5px}
+.idx{display:inline-flex;align-items:center;gap:10px}
+.idx::before{content:"";width:26px;height:1px;background:var(--accent)}
+
+/* Profile */
+.statement{font-family:var(--font-display);font-size:clamp(34px,4.7vw,66px);line-height:1.12;letter-spacing:-.015em;max-width:18em;margin:18px 0 clamp(48px,6vw,80px)}
+.statement em{color:var(--accent)}
+.chip-img{display:inline-block;vertical-align:middle;width:1.75em;height:.9em;border-radius:999px;overflow:hidden;margin:0 .1em;transform:translateY(-.08em);box-shadow:0 8px 20px -10px rgba(11,37,65,.5);border:2px solid #fff;outline:1px solid var(--sky-deep)}
+.chip-img img{width:100%;height:100%;object-fit:cover}
+.profile{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(36px,6vw,88px);align-items:start}
+.profile-copy p{color:var(--muted);font-size:17.5px}
+.profile-copy p+p{margin-top:18px}
+.profile-copy .first{font-size:clamp(21px,2vw,25px);color:var(--ink);line-height:1.45}
+.idcard{background:var(--paper);border:1px solid var(--line);border-radius:26px;overflow:hidden;box-shadow:var(--shadow);position:relative}
+.idcard-top{display:flex;align-items:center;gap:16px;padding:22px 22px 20px;background:linear-gradient(140deg,var(--accent),var(--accent-2));color:#fff;position:relative;overflow:hidden}
+.idcard-top::after{content:"";position:absolute;right:-40px;top:-60px;width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,.3)}
+.idcard-top img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 12%;border:3px solid rgba(255,255,255,.75);flex:none}
+.idcard-top b{display:block;font-size:17px;line-height:1.25}
+.idcard-top span{font-size:13px;opacity:.85}
+.idcard dl{margin:0;padding:6px 22px 18px}
+.idcard dl div{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.idcard dl div:last-child{border-bottom:0}
+.idcard dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+.idcard dd{margin:0;font-weight:600;font-size:15px;text-align:right}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:clamp(56px,7vw,92px)}
+.principle{position:relative;padding:30px 28px 30px;border-radius:var(--r);background:var(--wash);border:1px solid var(--sky);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,background .35s}
+.principle:hover{transform:translateY(-4px);box-shadow:var(--shadow);background:#fff}
+.principle::after{content:"";position:absolute;right:-50px;bottom:-50px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,var(--sky) 0 30%,transparent 31%),radial-gradient(circle,transparent 0 58%,rgba(167,203,241,.6) 59% 60%,transparent 61%);opacity:.7}
+.principle .ico{width:48px;height:48px;border-radius:14px;background:#fff;border:1px solid var(--sky);display:grid;place-items:center;color:var(--accent);margin-bottom:20px}
+.principle .ico svg{width:24px;height:24px}
+.principle h3{font-family:var(--font-display);font-size:29px;line-height:1.12;margin-bottom:10px}
+.principle p{color:var(--muted);font-size:16px;position:relative;z-index:1}
+
+/* Experience */
+.exp{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,6vw,88px);align-items:start}
+.exp-side{position:sticky;top:110px}
+.exp-side h2{font-family:var(--font-display);font-size:clamp(44px,6vw,80px);line-height:.98;letter-spacing:-.02em;margin:14px 0 20px}
+.exp-side h2 em{color:var(--accent)}
+.exp-side p{color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.entries{list-style:none;margin:0;padding:0;display:grid;gap:22px;position:relative}
+.entries::before{content:"";position:absolute;left:-30px;top:16px;bottom:16px;width:1px;background:linear-gradient(var(--sky-deep),var(--sky-deep) 85%,transparent)}
+.entry{position:relative}
+.entry::before{content:"";position:absolute;left:-36px;top:30px;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--accent);box-shadow:0 0 0 5px var(--wash)}
+.ecard{display:grid;grid-template-columns:200px 1fr;background:var(--paper);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s}
+.ecard:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:var(--sky-deep)}
+.ecard .eimg{position:relative;border:0;padding:0;background:var(--sky);cursor:zoom-in;min-height:100%}
+.ecard .eimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.ecard:hover .eimg img{transform:scale(1.06)}
+.ebody{padding:24px 26px}
+.when{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ebody h3{font-family:var(--font-display);font-size:29px;line-height:1.12;margin:8px 0 8px}
+.ebody p{color:var(--muted);font-size:16px}
+.where{display:flex;align-items:center;gap:7px;font-size:14px;color:var(--accent);font-weight:600;margin-top:2px}
+.where svg{width:15px;height:15px}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.pill{font-size:12.5px;padding:4px 11px;border-radius:999px;background:var(--wash);border:1px solid var(--sky);font-weight:500;color:var(--ink)}
+.more{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-weight:600;font-size:15px}
+.more svg{width:16px;height:16px;transition:transform .25s}
+.more:hover svg{transform:translateX(4px)}
+.origin{display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:var(--r);border:1px dashed var(--sky-deep);color:var(--muted);font-size:15.5px}
+.origin b{color:var(--ink)}
+
+/* Reflection */
+.ref-head{padding-bottom:clamp(28px,4vw,48px);margin-bottom:clamp(36px,5vw,64px);border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:end}
+.ref-title{font-family:var(--font-display);font-size:clamp(64px,11.5vw,176px);line-height:.84;letter-spacing:-.03em;margin-top:18px}
+.ref-title em{color:var(--accent);display:block;padding-left:.5em}
+.ref-sub{font-size:clamp(18px,1.7vw,22px);font-weight:500;margin-top:24px}
+.ref-meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:12px;color:var(--muted);font-size:14.5px}
+.ref-meta span{display:inline-flex;align-items:center;gap:7px}
+.ref-meta svg{width:16px;height:16px;color:var(--accent)}
+.role-seal{width:150px;height:150px;position:relative;flex:none}
+.role-seal svg{width:100%;height:100%;animation:spin 40s linear infinite}
+.role-seal text{font-family:var(--font-mono);font-size:10.6px;letter-spacing:.3em;fill:var(--accent)}
+.role-seal .core{position:absolute;inset:30px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--font-display);font-size:19px;line-height:1.05;box-shadow:0 14px 30px -12px rgba(29,105,189,.7)}
+.reflection{display:grid;grid-template-columns:290px 1fr;gap:clamp(36px,6vw,96px);align-items:start}
+.casefile{position:sticky;top:110px;border:1px solid var(--line);border-radius:var(--r);background:var(--paper);overflow:hidden}
+.cf-top{display:flex;align-items:center;gap:16px;padding:20px 22px;background:linear-gradient(160deg,var(--wash),#fff);border-bottom:1px solid var(--line)}
+.ring-prog{width:62px;height:62px;flex:none;position:relative}
+.ring-prog svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-prog circle{fill:none;stroke-width:5}
+.ring-prog .bg{stroke:var(--sky)}
+.ring-prog .fg{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset .15s linear}
+.ring-prog span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-mono);font-size:12px;font-weight:500;color:var(--ink)}
+.cf-top b{display:block;font-size:14.5px}
+.cf-top small{display:block;color:var(--muted);font-size:13px}
+.casefile dl{margin:0;padding:6px 22px 18px}
+.casefile dl div{padding:11px 0;border-bottom:1px dashed var(--line)}
+.casefile dl div:last-child{border-bottom:0}
+.casefile dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.casefile dd{margin:2px 0 0;font-size:15px;font-weight:500;line-height:1.4}
+.essay{max-width:690px}
+.essay p{font-size:19px;line-height:1.8;color:#1C3653;margin-bottom:1.3em}
+.essay .lede{font-size:clamp(21px,2vw,24px);line-height:1.65;color:var(--ink)}
+.essay .lede::first-letter{font-family:var(--font-display);float:left;font-size:104px;line-height:.8;padding:8px 14px 0 0;color:var(--accent)}
+.essay mark{background:linear-gradient(var(--sky),var(--sky)) no-repeat 0 88%/100% 40%;color:inherit;padding:0 .05em;transition:background-size 1.2s cubic-bezier(.2,.7,.2,1)}
+.essay mark.pre{background-size:0% 40%}
+.pull{margin:56px 0;padding:0;position:relative}
+.pull blockquote{margin:0;font-family:var(--font-display);font-style:italic;font-size:clamp(32px,3.6vw,46px);line-height:1.15;color:var(--ink);padding-left:56px;position:relative}
+.pull blockquote::before{content:"\201C";position:absolute;left:0;top:-.18em;font-size:2.2em;line-height:1;color:var(--sky-deep);font-style:normal}
+.pull figcaption{margin-top:16px;padding-left:56px;font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.efig{margin:56px 0}
+.efig button{border:0;padding:0;background:none;cursor:zoom-in;width:100%;display:block;border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow)}
+.efig img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:50% 62%;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.efig button:hover img{transform:scale(1.03)}
+.efig figcaption{margin-top:12px;font-size:14px;color:var(--muted)}
+.signoff{display:flex;align-items:center;gap:16px;margin-top:44px;padding-top:28px;border-top:1px solid var(--line)}
+.sig{font-family:var(--font-display);font-style:italic;font-size:40px;color:var(--accent);line-height:1}
+.signoff b{display:block;font-size:15.5px}
+.signoff small{color:var(--muted);font-size:14px}
+
+/* Bench (interactive) */
+.bench{display:grid;grid-template-columns:.78fr 1.22fr;gap:clamp(28px,4vw,56px);align-items:start}
+.step{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 12px}
+.samples{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:30px}
+.sample{display:inline-flex;align-items:center;gap:8px;padding:10px 15px;border-radius:999px;border:1px solid var(--sky-deep);background:#fff;cursor:pointer;font-weight:600;font-size:14.5px;transition:background .2s,border-color .2s,color .2s}
+.sample i{width:12px;height:16px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--sky-deep);display:block}
+.sample:hover{background:var(--wash)}
+.sample[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.sample[aria-pressed="true"] i{background:#fff}
+.bench-help{color:var(--muted);font-size:16px;margin-bottom:22px}
+.bench-actions{display:flex;flex-wrap:wrap;gap:10px}
+.key{margin-top:30px;padding:18px 20px;border-radius:18px;background:#fff;border:1px solid var(--line);display:grid;gap:12px}
+.key div{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--muted)}
+.key b{color:var(--ink)}
+.kdot{width:36px;height:36px;border-radius:50%;flex:none;border:1px solid var(--sky-deep);background:radial-gradient(circle at 50% 50%,#fff,var(--wash))}
+.kdot.pos{background:radial-gradient(circle at 35% 40%,var(--accent-2) 0 14%,transparent 15%),radial-gradient(circle at 64% 58%,var(--accent-2) 0 17%,transparent 18%),radial-gradient(circle at 40% 70%,var(--accent-2) 0 10%,transparent 11%),radial-gradient(circle,#fff,var(--wash))}
+.kdot.neg{background:radial-gradient(circle,rgba(74,147,224,.55) 0 1.6px,transparent 2px) 0 0/7px 7px,radial-gradient(circle,#fff,var(--wash))}
+.typing-card{background:#fff;border:1px solid var(--sky-deep);border-radius:28px;box-shadow:var(--shadow);overflow:hidden}
+.tc-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px dashed var(--sky-deep);font-family:var(--font-mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tc-head b{color:var(--accent);font-weight:500}
+.wells{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(10px,2vw,22px);padding:clamp(18px,3vw,30px)}
+.well-btn{border:0;background:none;padding:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:10px;border-radius:20px}
+.well-btn canvas{width:100%;aspect-ratio:1;display:block;border-radius:50%;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.well-btn:hover canvas{transform:scale(1.03)}
+.well-btn:disabled{cursor:default}
+.well-btn:disabled:hover canvas{transform:none}
+.wl{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;color:var(--ink)}
+.ws{font-size:13px;color:var(--muted);min-height:1.4em;text-align:center}
+.ws.pos{color:var(--accent);font-weight:600}
+.result{border-top:1px dashed var(--sky-deep);padding:22px clamp(18px,3vw,30px) 26px;display:grid;grid-template-columns:auto 1fr;gap:6px 26px;align-items:center;min-height:150px;background:linear-gradient(180deg,#fff,var(--wash))}
+.rtype{font-family:var(--font-display);font-size:clamp(72px,8vw,104px);line-height:.9;color:var(--accent);min-width:1.6em;text-align:center}
+.rtype.wait{color:var(--sky-deep)}
+.rname{font-weight:700;font-size:18px}
+.rline{color:var(--muted);font-size:15px;margin-top:4px}
+.rnote{display:inline-block;margin-top:10px;font-size:12.5px;font-weight:600;padding:4px 11px;border-radius:999px;background:var(--accent);color:#fff}
+.disclaim{font-size:13px;color:var(--muted);margin-top:14px}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,3vw,40px)}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:26px;padding:clamp(24px,3vw,36px)}
+.panel h3{font-family:var(--font-display);font-size:33px;margin:10px 0 18px}
+.slist{list-style:none;margin:0;padding:0}
+.slist li{display:grid;grid-template-columns:44px 1fr auto;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.slist li:last-child{border-bottom:0}
+.slist .si{width:44px;height:44px;border-radius:13px;background:var(--wash);border:1px solid var(--sky);display:grid;place-items:center;color:var(--accent)}
+.slist .si svg{width:21px;height:21px}
+.slist b{display:block;font-size:16px;font-weight:600;line-height:1.3}
+.slist small{display:block;color:var(--muted);font-size:14px;line-height:1.45;margin-top:2px}
+.status{font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px;white-space:nowrap;letter-spacing:.02em}
+.st-perf{background:var(--accent);color:#fff}
+.st-obs{background:#fff;color:var(--accent);border:1.5px solid var(--accent)}
+.st-dev{background:#fff;color:var(--muted);border:1.5px dashed var(--sky-deep)}
+.next{list-style:none;margin:0;padding:0;counter-reset:n}
+.next li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.next li:last-child{border-bottom:0}
+.next .box{width:24px;height:24px;border-radius:8px;border:2px solid var(--sky-deep);margin-top:2px}
+.next b{display:block;font-size:16px}
+.next small{display:block;color:var(--muted);font-size:14.5px;margin-top:2px;line-height:1.5}
+
+/* Gallery (slides) */
+.slides-wrap{position:relative}
+.slides{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:max(18px,calc((100vw - var(--max))/2 + 44px));padding:6px max(18px,calc((100vw - var(--max))/2 + 44px)) 26px;scrollbar-width:none;cursor:grab}
+.slides::-webkit-scrollbar{display:none}
+.slides.drag{cursor:grabbing;scroll-snap-type:none}
+.slide{flex:none;scroll-snap-align:start;height:clamp(380px,44vw,540px);position:relative;border-radius:22px;overflow:hidden;border:1px solid var(--sky-deep);background:var(--sky);padding:0;cursor:zoom-in;display:block;box-shadow:0 30px 50px -36px rgba(11,37,65,.5);user-select:none;-webkit-user-select:none}
+.slide.land{aspect-ratio:1.36}
+.slide.port{aspect-ratio:.7}
+.slide img{width:100%;height:100%;object-fit:cover;pointer-events:none;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.slide:hover img{transform:scale(1.04)}
+.slabel{position:absolute;left:0;top:0;bottom:0;width:44px;background:rgba(255,255,255,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-right:1px solid rgba(167,203,241,.8);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:14px 0}
+.slabel i{width:14px;height:14px;border-radius:50%;border:1.5px solid var(--accent);display:block}
+.slabel span{writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.slabel span b{color:var(--accent);font-weight:500}
+.scap{position:absolute;left:58px;right:14px;bottom:14px;background:rgba(255,255,255,.93);border-radius:14px;padding:11px 14px;font-size:14px;line-height:1.35;text-align:left;color:var(--ink)}
+.slides-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:8px}
+.counter{font-family:var(--font-mono);font-size:13px;letter-spacing:.14em;color:var(--muted)}
+.counter b{color:var(--ink);font-weight:500}
+.sbar{flex:1;height:2px;background:var(--line);border-radius:2px;overflow:hidden;max-width:420px}
+.sbar i{display:block;height:100%;width:20%;background:var(--accent);transition:width .2s}
+.arrows{display:flex;gap:10px}
+.icon-btn{width:48px;height:48px;flex:none;border-radius:50%;border:1px solid var(--sky-deep);background:#fff;display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}
+.icon-btn:hover{background:var(--wash);transform:translateY(-1px)}
+.icon-btn svg{width:20px;height:20px}
+
+/* Certificate */
+.cert{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(36px,6vw,80px);align-items:center}
+.cert-info h3{font-family:var(--font-display);font-size:clamp(44px,5vw,66px);line-height:1;margin:16px 0 16px}
+.cert-info p{color:var(--muted)}
+.cert-info dl{margin:26px 0 30px;border-top:1px solid var(--line)}
+.cert-info dl div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.cert-info dt{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.cert-info dd{margin:0;font-weight:600}
+.cert-stage{perspective:1400px}
+.cert-frame{display:block;width:100%;border:1px solid var(--sky-deep);cursor:zoom-in;padding:clamp(16px,2.6vw,30px);border-radius:30px;background:linear-gradient(150deg,var(--sky),var(--wash));transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1);position:relative}
+.cert-frame img{border-radius:8px;box-shadow:0 34px 60px -30px rgba(11,37,65,.55);transform:translateZ(30px)}
+.glare{position:absolute;inset:0;border-radius:30px;pointer-events:none;background:radial-gradient(600px circle at var(--gx,50%) var(--gy,0%),rgba(255,255,255,.55),transparent 45%);opacity:0;transition:opacity .4s}
+.cert-frame:hover .glare{opacity:1}
+
+/* Closing */
+.closing{padding:clamp(80px,10vw,128px) 0 clamp(40px,5vw,56px)}
+.cl-card{position:relative;overflow:hidden;border-radius:36px;padding:clamp(40px,6vw,80px);background:linear-gradient(135deg,#1D69BD 0%,#3A88DA 60%,#6AAAEA 100%);color:#fff;display:grid;grid-template-columns:1.4fr .6fr;gap:30px;align-items:end}
+.cl-card .orb{position:absolute;border-radius:50%;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.28) 0 22%,rgba(255,255,255,.1) 23% 60%,rgba(255,255,255,.18) 61% 64%,transparent 65%)}
+.cl-card .o1{width:260px;height:260px;right:-60px;top:-80px}
+.cl-card .o2{width:120px;height:120px;right:180px;top:40px;opacity:.7}
+.cl-card .o3{width:180px;height:180px;right:40px;bottom:-90px;opacity:.6}
+.cl-card .mono{color:#D3E6FA}
+.cl-card h2{font-family:var(--font-display);font-size:clamp(40px,5.4vw,74px);line-height:1;margin-top:16px;position:relative}
+.cl-card h2 em{color:#CFE5FB}
+.cl-card p{color:#E7F1FC;margin-top:18px;max-width:34em;position:relative}
+.cl-card .btn{background:#fff;color:var(--accent);justify-self:end;position:relative}
+.cl-card .btn:hover{background:var(--wash)}
+footer{border-top:1px solid var(--line);padding:28px 0 36px;color:var(--muted);font-size:14px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;align-items:center}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 18px}
+.foot a{color:var(--muted)}
+.foot a:hover{color:var(--accent)}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:150;background:rgba(238,245,253,.97);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:none;grid-template-rows:auto 1fr auto;padding:16px}
+.lb.open{display:grid;animation:fade .3s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.lb-top{display:flex;justify-content:space-between;align-items:center;padding:2px 2px 12px}
+.lb-count{font-family:var(--font-mono);font-size:12px;letter-spacing:.16em;color:var(--muted)}
+.lb-stage{display:flex;align-items:center;justify-content:center;gap:14px;min-height:0}
+.lb-stage img{max-height:100%;max-width:min(100%,1200px);object-fit:contain;border-radius:16px;box-shadow:var(--shadow);background:#fff;animation:zoomIn .35s cubic-bezier(.2,.7,.2,1) both}
+@keyframes zoomIn{from{transform:scale(.97);opacity:.4}to{transform:none;opacity:1}}
+.lb-cap{text-align:center;padding:14px 8px 4px;font-size:15px}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1080px){
+  .links a{padding:8px 10px}
+  .brand b{display:none}
+}
+@media (max-width:1020px){
+  .hero-in{grid-template-columns:1fr;min-height:0;padding-bottom:0}
+  .figure{position:relative;right:auto;margin:30px auto 0;height:clamp(440px,95vw,600px)}
+  .f1{left:-6%}.f2{right:-4%}
+  .scroll-cue{display:none}
+  .sec-head,.exp,.reflection,.bench,.cert,.profile{grid-template-columns:1fr}
+  .exp-side,.casefile{position:static}
+  .ref-head{grid-template-columns:1fr}
+  .role-seal{display:none}
+}
+@media (max-width:860px){
+  .menu-btn{display:grid}
+  .links{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;flex-direction:column;align-items:stretch;background:#fff;border:1px solid var(--line);border-radius:22px;padding:10px;box-shadow:var(--shadow)}
+  .links.open{display:flex}
+  .links a{padding:12px 14px}
+  .links a.cta{margin:6px 0 0;text-align:center}
+  .blob{display:none}
+  .brand b{display:block}
+  .principles{grid-template-columns:1fr}
+  .skills{grid-template-columns:1fr}
+  .cl-card{grid-template-columns:1fr}
+  .cl-card .btn{justify-self:start}
+  .ecard{grid-template-columns:1fr}
+  .ecard .eimg{height:220px}
+}
+@media (max-width:640px){
+  body{font-size:16.5px}
+  .vitals div{width:50%;margin-right:0;padding-right:12px}
+  .vitals div:nth-child(2n){border-right:0;padding-left:12px}
+  .vitals div:nth-child(3){border-right:1px solid var(--line)}
+  .float{font-size:12px;padding:8px 10px 8px 8px}
+  .float .fi{width:28px;height:28px}
+  .f1{left:-2%;top:22%}.f2{right:-2%;top:64%}
+  .entries::before{left:-18px}
+  .entry::before{left:-24px}
+  .entries{margin-left:18px}
+  .essay p{font-size:17.5px}
+  .essay .lede{font-size:19.5px}
+  .pull blockquote,.pull figcaption{padding-left:38px}
+  .wells{gap:8px;padding:16px}
+  .wl{font-size:10.5px}
+  .ws{font-size:11.5px}
+  .result{grid-template-columns:1fr;text-align:left}
+  .rtype{text-align:left}
+  .slist li{grid-template-columns:40px 1fr;row-gap:8px}
+  .slist .status{grid-column:2;justify-self:start}
+  .cert-info dl div{grid-template-columns:1fr;gap:2px}
+  .slide{height:420px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-steth" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v5a4 4 0 0 0 8 0V3"/><path d="M9 12v2a5 5 0 0 0 10 0v-2"/><circle cx="19" cy="10" r="2"/></g></symbol>
+  <symbol id="i-flask" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21h11.6a2 2 0 0 0 1.7-2.5L14 9V3"/><path d="M7 15h10"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 4.6-3.4 8.3-8 9-4.6-.7-8-4.4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></g></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5 5 0 0 0-8.8-3.2 5 5 0 0 0-8.8 3.2c0 5.4 8.8 11 8.8 11s3.3-2.1 5.8-5"/><path d="M14 12h2l1.5-2.5L19.5 15l1.5-3H23"/></g></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.7 2.7L16 9.8"/></g></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11V4a1.5 1.5 0 0 1 3 0v7M14 11V5.5a1.5 1.5 0 0 1 3 0V14c0 4-2.7 7-6.5 7S5 18.5 4 16l-1.3-3.2A1.4 1.4 0 0 1 5 11.5L8 14"/></g></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17"/></g></symbol>
+  <symbol id="i-zoom" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5M11 8.5v5M8.5 11h5"/></g></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M8.5 13.8L7 21l5-2.6 5 2.6-1.5-7.2"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-cell" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="12" rx="9" ry="7"/><ellipse cx="12" cy="12" rx="4" ry="2.6"/></g></symbol>
+  <symbol id="i-reset" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5"/><path d="M4 4v4.5h4.5"/></g></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="Akol Madol Atak Kuot, back to top"><span class="mark" aria-hidden="true">AK</span><b>Akol Madol Atak Kuot</b></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><svg><use href="#i-menu"/></svg></button>
+  <ul class="links" id="navLinks">
+    <li aria-hidden="true" class="blob" id="blob"></li>
+    <li><a href="#profile" data-spy="profile">Profile</a></li>
+    <li><a href="#experience" data-spy="experience">Experience</a></li>
+    <li><a href="#lab" data-spy="lab">Lab</a></li>
+    <li><a href="#skills" data-spy="skills">Skills</a></li>
+    <li><a href="#gallery" data-spy="gallery">Gallery</a></li>
+    <li><a href="#certificates" data-spy="certificates">Certificates</a></li>
+    <li><a class="cta" href="#reflection" data-spy="reflection">Personal Reflection</a></li>
+  </ul>
+</header>
+
+<main id="main">
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="top" aria-label="Introduction">
+  <canvas id="cells" aria-hidden="true"></canvas>
+  <div class="wrap hero-in">
+    <div class="hero-text">
+      <span class="eyebrow ld ld1"><span class="dot" aria-hidden="true"></span>Medical Student · Gulf Medical University, Ajman</span>
+      <h1 class="name" aria-label="Akol Madol Atak Kuot"><span class="ln"><span>Akol Madol</span></span><span class="ln it"><span>Atak Kuot</span></span></h1>
+      <p class="lead ld ld2">A first-semester medical student learning medicine <strong>where theory meets the bench</strong>: one supervised procedure at a time, with an honest reflection on each, on the way to becoming a confident, accurate and competent doctor.</p>
+      <div class="actions ld ld3">
+        <a class="btn btn-primary" href="#reflection">Read my Personal Reflection <svg><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-ghost" href="#lab">Try the blood typing lab</a>
+      </div>
+      <dl class="vitals ld ld4">
+        <div><dt>University</dt><dd>Gulf Medical University</dd></div>
+        <div><dt>Campus</dt><dd>Ajman, UAE</dd></div>
+        <div><dt>Stage</dt><dd>First semester</dd></div>
+        <div><dt>Focus</dt><dd>Medical Expert</dd></div>
+      </dl>
+      <p class="hint ld ld5" id="cellHint"><i aria-hidden="true"></i><span>Move through the field: the cells clump together, like a positive agglutination reaction.</span></p>
+    </div>
+    <div class="figure" aria-hidden="false">
+      <div class="ring" aria-hidden="true"></div>
+      <svg class="ring-text" viewBox="0 0 500 500" aria-hidden="true"><defs><path id="ringPath" d="M250,250 m-232,0 a232,232 0 1,1 464,0 a232,232 0 1,1 -464,0"/></defs><text><textPath href="#ringPath" textLength="1450" lengthAdjust="spacing">Medical Student · Gulf Medical University · Ajman · United Arab Emirates · Portfolio 2026 ·</textPath></text></svg>
+      <img class="cutout" src="img/akol-cutout.webp" alt="Akol Madol Atak Kuot in a white lab coat and gloves, holding a lancet ready for a finger-prick blood test" width="820" height="1457">
+      <div class="float f1"><span class="fi"><svg><use href="#i-drop"/></svg></span><span><b>Blood grouping</b><span>Performed under supervision</span></span></div>
+      <div class="float f2"><span class="fi"><svg><use href="#i-steth"/></svg></span><span><b>GMU Clinic</b><span>Patient procedure observed</span></span></div>
+    </div>
+  </div>
+  </section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Medical Expert <svg><use href="#i-cell"/></svg></span><span>Blood Grouping <svg><use href="#i-cell"/></svg></span><span>Patient Safety <svg><use href="#i-cell"/></svg></span><span>Precision <svg><use href="#i-cell"/></svg></span><span>Reflective Practice <svg><use href="#i-cell"/></svg></span><span>Gulf Medical University <svg><use href="#i-cell"/></svg></span>
+    <span>Medical Expert <svg><use href="#i-cell"/></svg></span><span>Blood Grouping <svg><use href="#i-cell"/></svg></span><span>Patient Safety <svg><use href="#i-cell"/></svg></span><span>Precision <svg><use href="#i-cell"/></svg></span><span>Reflective Practice <svg><use href="#i-cell"/></svg></span><span>Gulf Medical University <svg><use href="#i-cell"/></svg></span>
+  </div>
+</div>
+
+<!-- ===================== PROFILE ===================== -->
+<section class="sec" id="profile">
+  <div class="wrap">
+    <span class="mono idx">01 / Profile</span>
+    <p class="statement">I'm learning medicine where <em>theory</em> <span class="chip-img"><img src="img/lab-discussion.jpg" alt="" loading="lazy" style="object-position:50% 30%"></span> meets the <em>bench</em> <span class="chip-img"><img src="img/lab-sampling.jpg" alt="" loading="lazy" style="object-position:50% 70%"></span>, one supervised procedure <span class="chip-img"><img src="img/portrait.jpg" alt="" loading="lazy" style="object-position:50% 78%"></span> at a time.</p>
+    <div class="profile">
+      <div class="profile-copy">
+        <p class="first">I'm Akol Madol Atak Kuot, a medical student in my first semester at Gulf Medical University in Ajman, United Arab Emirates.</p>
+        <p>My first months of medical school have been spent in the physiology laboratory and the university clinic as much as in lectures. I've performed blood grouping and blood typing under supervision, found my own blood group, and watched a nurse practitioner carry out the same procedure with a real patient.</p>
+        <p>Those sessions taught me that I learn best when I can apply a concept with my own hands, and that the nerves that come with an unfamiliar procedure are part of learning it. I prepare carefully, ask for feedback, and reflect on every new skill so the next attempt is more precise than the last.</p>
+        <p>My long-term goal is to become a doctor who applies biomedical knowledge to real patients with confidence, accuracy and care.</p>
+      </div>
+      <aside class="idcard" aria-label="Student profile">
+        <div class="idcard-top">
+          <img src="img/portrait.jpg" alt="" loading="lazy">
+          <div><b>Akol Madol Atak Kuot</b><span>Student profile</span></div>
+        </div>
+        <dl>
+          <div><dt>Studying</dt><dd>Medicine</dd></div>
+          <div><dt>University</dt><dd>Gulf Medical University</dd></div>
+          <div><dt>Campus</dt><dd>Ajman, UAE</dd></div>
+          <div><dt>Stage</dt><dd>First semester, 2026</dd></div>
+          <div><dt>Competency</dt><dd>Medical Expert</dd></div>
+        </dl>
+      </aside>
+    </div>
+    <div class="principles">
+      <div class="principle"><div class="ico"><svg><use href="#i-flask"/></svg></div><h3>Theory and practice, weighed equally</h3><p>Knowledge from lectures only becomes understanding once it has been applied at the bench under supervision.</p></div>
+      <div class="principle"><div class="ico"><svg><use href="#i-shield"/></svg></div><h3>Precision protects patients</h3><p>Accurate blood grouping is what keeps transfusions safe. Careful technique is a form of patient care.</p></div>
+      <div class="principle"><div class="ico"><svg><use href="#i-heart"/></svg></div><h3>Courage to learn</h3><p>Feeling nervous before an unfamiliar procedure is normal. I let it sharpen my attention instead of holding me back.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section class="sec band" id="experience">
+  <div class="wrap exp">
+    <div class="exp-side">
+      <span class="mono idx">02 / Training record</span>
+      <h2>Laboratory &amp; <em>clinical experience</em></h2>
+      <p>Hands-on sessions and programmes from my first semester at Gulf Medical University, most recent first.</p>
+      <div class="legend"><span class="pill">Physiology Laboratory</span><span class="pill">GMU Clinic</span><span class="pill">HAYAT Program</span></div>
+    </div>
+    <ol class="entries">
+      <li class="entry">
+        <article class="ecard">
+          <button class="eimg" data-lb="0" aria-label="Enlarge photo: students at the GMU Clinic"><img src="img/clinic-group.jpg" alt="Medical students in white coats at the GMU Clinic around a patient after a blood draw" loading="lazy"></button>
+          <div class="ebody">
+            <span class="when">October 2026 · Week 2</span>
+            <h3>Clinical observation with a patient</h3>
+            <span class="where"><svg><use href="#i-pin"/></svg>GMU Clinic</span>
+            <p style="margin-top:10px">Followed the laboratory session into the university clinic to watch a nurse practitioner perform the procedure first-hand with a patient, connecting bench technique to real patient care.</p>
+            <div class="pills"><span class="pill">Clinical observation</span><span class="pill">Patient safety</span></div>
+          </div>
+        </article>
+      </li>
+      <li class="entry">
+        <article class="ecard">
+          <button class="eimg" data-lb="2" aria-label="Enlarge photo: finger-prick sampling in the lab"><img src="img/lab-sampling.jpg" alt="A gloved student taking a finger-prick sample while the lab group watches" loading="lazy" style="object-position:50% 45%"></button>
+          <div class="ebody">
+            <span class="when">October 2026 · Week 2</span>
+            <h3>Blood grouping &amp; blood typing practical</h3>
+            <span class="where"><svg><use href="#i-pin"/></svg>Physiology Laboratory, GMU</span>
+            <p style="margin-top:10px">Personally performed blood grouping and typing alongside my peers, guided by my supervisor and lab assistant, and determined my own blood group and type.</p>
+            <div class="pills"><span class="pill">Lancet finger-prick</span><span class="pill">Gloving</span><span class="pill">Typing card</span><span class="pill">Teamwork</span></div>
+            <a class="more" href="#reflection">Read the reflection <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+      </li>
+      <li class="entry">
+        <article class="ecard">
+          <button class="eimg" data-lb="5" aria-label="Enlarge the HAYAT Program certificate"><img src="img/hayat-certificate.jpg" alt="HAYAT Program certificate of participation" loading="lazy"></button>
+          <div class="ebody">
+            <span class="when">2026 · Programme</span>
+            <h3>HAYAT Program</h3>
+            <span class="where"><svg><use href="#i-award"/></svg>Gulf Medical University</span>
+            <p style="margin-top:10px">Awarded a Certificate of Participation, signed by Prof. Manda Venkatramana, Chancellor of Gulf Medical University.</p>
+            <a class="more" href="#certificates">View certificate <svg><use href="#i-arrow"/></svg></a>
+          </div>
+        </article>
+      </li>
+      <li class="entry">
+        <div class="origin"><svg width="22" height="22" style="color:var(--accent);flex:none"><use href="#i-cal"/></svg><span><b>Autumn 2026.</b> Began my first semester as a medical student at Gulf Medical University, Ajman.</span></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== PERSONAL REFLECTION ===================== -->
+<section class="sec" id="reflection">
+  <div class="wrap">
+    <header class="ref-head">
+      <div>
+        <span class="mono idx">03 / Competency · Medical Expert</span>
+        <h2 class="ref-title">Personal <em>Reflection</em></h2>
+        <p class="ref-sub">Participation in Blood Grouping and Blood Typing</p>
+        <div class="ref-meta">
+          <span><svg><use href="#i-cal"/></svg>October 2026</span>
+          <span><svg><use href="#i-clock"/></svg><span id="readTime">4 min read</span></span>
+          <span><svg><use href="#i-pin"/></svg>Physiology Laboratory &amp; GMU Clinic</span>
+        </div>
+      </div>
+      <div class="role-seal" aria-hidden="true">
+        <svg viewBox="0 0 150 150"><defs><path id="sealPath" d="M75,75 m-62,0 a62,62 0 1,1 124,0 a62,62 0 1,1 -124,0"/></defs><text><textPath href="#sealPath" textLength="385" lengthAdjust="spacing">Medical Expert · Reflective Practice ·</textPath></text></svg>
+        <div class="core">Medical<br>Expert</div>
+      </div>
+    </header>
+
+    <div class="reflection">
+      <aside class="casefile" aria-label="Reflection details">
+        <div class="cf-top">
+          <div class="ring-prog" aria-hidden="true"><svg viewBox="0 0 62 62"><circle class="bg" cx="31" cy="31" r="26"/><circle class="fg" id="progRing" cx="31" cy="31" r="26" stroke-dasharray="163.4" stroke-dashoffset="163.4"/></svg><span id="progNum">0%</span></div>
+          <div><b>Reading progress</b><small>Personal Reflection</small></div>
+        </div>
+        <dl>
+          <div><dt>Procedure</dt><dd>Blood grouping &amp; blood typing</dd></div>
+          <div><dt>Setting</dt><dd>Physiology Laboratory, then GMU Clinic</dd></div>
+          <div><dt>When</dt><dd>October 2026, second week</dd></div>
+          <div><dt>Supervision</dt><dd>Supervisor and lab assistant</dd></div>
+          <div><dt>Equipment</dt><dd>Lancet, gloves, typing card</dd></div>
+          <div><dt>Competency</dt><dd>Medical Expert</dd></div>
+        </dl>
+      </aside>
+
+      <article class="essay" id="essay">
+        <p class="lede">During my first semester as a medical student at Gulf Medical University (GMU), I actively engaged in multiple laboratory practical sessions. One of these involved blood group and blood typing. These sessions were of great importance because they provided me with the opportunity to apply theories and concepts into a practical setting. Under the guidance of my supervisor and lab assistant, I personally performed the procedures while working alongside my peers. This experience occurred in October around its second week. It was done in two locations, in the physiology laboratory and later went to the GMU clinic to see it being done first hand to a patient by a nurse practitioner. This experience allowed me to gain practical exposure to laboratory investigations and understand their relevance to medical practice.</p>
+        <p>I was in a state of turmoil, I was excited and at the same time nervous during this session. The excitement was mainly because I was going to have the opportunity to perform an actual laboratory procedure rather than simply learning about it from lectures. And on the other hand, my anxiety came from not knowing how to handle and properly use some medical instruments needed for this procedure. I lacked the familiarity and right etiquette to wear gloves and use the lancet. Nevertheless, these mixed feelings did not stop me from becoming more attentive and actively being involved in the learning process.</p>
+        <p>One of the most positive aspects of the experience was being able to perform blood grouping and blood typing myself under supervision. I was given the opportunity to find my own blood type and group by the supervisor, making the learning more engaging and helped me to appreciate the practical application of medical knowledge. However, I don’t like needles and in this procedure, I had to use the lancet. And it wasn’t that bad to be honest, I over exaggerated the harm needles can cause. Maybe that was my major fear. My takeaway from this is that <mark>theoretical knowledge alone is not enough or sufficient without practical experience</mark>. Both should be weighed equally as they are important drivers for nuanced understanding of concepts, especially in the medical field.</p>
+        <figure class="pull">
+          <blockquote>Theoretical knowledge alone is not enough or sufficient without practical experience.</blockquote>
+          <figcaption>Akol Madol Atak Kuot</figcaption>
+        </figure>
+        <p>Throughout these sessions, I was able to develop a better understanding of blood groups and their clinical importance. I began to appreciate why <mark>accurate blood grouping is essential in medical practice, especially when it comes to blood transfusions and patient safety</mark>. This experience helped me to learn how to use and properly handle laboratory equipment, therefore demonstrating how medical experts must be able to be precise when working and also being able to apply theory or biomedical knowledge with practical applications rather than relying solely on memorization.</p>
+        <figure class="efig">
+          <button data-lb="3" aria-label="Enlarge photo: discussing blood typing results"><img src="img/lab-discussion.jpg" alt="Akol explaining blood typing results to classmates beside a typing card with blood samples" loading="lazy"></button>
+          <figcaption>Talking through the blood typing card with my lab group in the Physiology Laboratory.</figcaption>
+        </figure>
+        <p>Overall, participating in blood grouping and blood typing laboratory sessions was a valuable learning experience. It strengthened my understanding of blood groups, increased my appreciation of laboratory investigations and helped me identify practical skills that require further development. I also learned that <mark>feeling nervous when encountering unfamiliar procedures is a normal part of the learning process</mark>.</p>
+        <p>Moving forward, I intend to prepare more thoroughly before laboratory sessions by revising the scientific principles behind each procedure. I will also seek opportunities to improve my familiarity with laboratory equipment through supervised practice and request feedback from my instructors. <mark>My goal is to become more confident, accurate and competent</mark> in applying theoretical or biomedical knowledge to practical situations as I progress through medical school.</p>
+        <div class="signoff">
+          <span class="sig" aria-hidden="true">Akol</span>
+          <div><b>Akol Madol Atak Kuot</b><small>Medical Student, Gulf Medical University</small></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== LAB (interactive) ===================== -->
+<section class="sec band" id="lab">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono idx">04 / Interactive typing bench</span>
+        <h2>Run the test <em>I learned</em></h2>
+      </div>
+      <p>Blood grouping works by adding antisera to a drop of blood and watching for clumping, called agglutination. Choose a sample, add each reagent, and read its group the way I read my own in the Physiology Laboratory.</p>
+    </div>
+    <div class="bench">
+      <div>
+        <p class="step">Step 1 · Choose a sample</p>
+        <div class="samples" role="group" aria-label="Blood samples">
+          <button class="sample" data-s="0" aria-pressed="true"><i aria-hidden="true"></i>Sample 01</button>
+          <button class="sample" data-s="1" aria-pressed="false"><i aria-hidden="true"></i>Sample 02</button>
+          <button class="sample" data-s="2" aria-pressed="false"><i aria-hidden="true"></i>Sample 03</button>
+          <button class="sample" data-s="3" aria-pressed="false"><i aria-hidden="true"></i>Sample 04</button>
+          <button class="sample" data-s="r" aria-pressed="false"><i aria-hidden="true"></i>Mystery</button>
+        </div>
+        <p class="step">Step 2 · Add the antisera</p>
+        <p class="bench-help">Select each well on the card to add its reagent. Clumping means the matching antigen is on the red cells.</p>
+        <div class="bench-actions">
+          <button class="btn btn-primary" id="addAll"><svg><use href="#i-drop"/></svg>Add all three</button>
+          <button class="btn btn-ghost" id="resetCard"><svg><use href="#i-reset"/></svg>Reset card</button>
+        </div>
+        <div class="key">
+          <div><span class="kdot pos" aria-hidden="true"></span><span><b>Agglutination</b> · antigen present (positive)</span></div>
+          <div><span class="kdot neg" aria-hidden="true"></span><span><b>Smooth suspension</b> · antigen absent (negative)</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="typing-card">
+          <div class="tc-head"><span>Blood grouping card</span><b id="cardSample">Sample 01</b></div>
+          <div class="wells">
+            <button class="well-btn" data-ab="A" aria-label="Add Anti-A to well 1"><canvas></canvas><span class="wl">Anti-A</span><span class="ws">Select to add</span></button>
+            <button class="well-btn" data-ab="B" aria-label="Add Anti-B to well 2"><canvas></canvas><span class="wl">Anti-B</span><span class="ws">Select to add</span></button>
+            <button class="well-btn" data-ab="D" aria-label="Add Anti-D to well 3"><canvas></canvas><span class="wl">Anti-D (Rh)</span><span class="ws">Select to add</span></button>
+          </div>
+          <div class="result" aria-live="polite">
+            <div class="rtype wait" id="rType">?</div>
+            <div>
+              <div class="rname" id="rName">Waiting for all three reagents</div>
+              <div class="rline" id="rLine">Add Anti-A, Anti-B and Anti-D to read the group.</div>
+              <div id="rNote"></div>
+            </div>
+          </div>
+        </div>
+        <p class="disclaim">Interactive teaching model for this portfolio. Not a diagnostic tool.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section class="sec" id="skills">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="mono idx">05 / Competencies</span>
+        <h2>Skills I'm <em>building</em></h2>
+      </div>
+      <p>Each skill is marked by how I have met it so far: performed myself under supervision, observed in clinic, or still developing.</p>
+    </div>
+    <div class="skills">
+      <div class="panel">
+        <span class="mono">Skills log</span>
+        <h3>Practised so far</h3>
+        <ul class="slist">
+          <li><span class="si"><svg><use href="#i-drop"/></svg></span><span><b>Blood grouping &amp; typing</b><small>Determined blood group and type, including my own</small></span><span class="status st-perf">Performed</span></li>
+          <li><span class="si"><svg><use href="#i-hand"/></svg></span><span><b>Finger-prick sampling with a lancet</b><small>Capillary blood for the typing card</small></span><span class="status st-perf">Performed</span></li>
+          <li><span class="si"><svg><use href="#i-eye"/></svg></span><span><b>Procedure with a patient</b><small>Watched a nurse practitioner at the GMU Clinic</small></span><span class="status st-obs">Observed</span></li>
+          <li><span class="si"><svg><use href="#i-shield"/></svg></span><span><b>Gloving &amp; instrument handling</b><small>Building familiarity through supervised practice</small></span><span class="status st-dev">Developing</span></li>
+          <li><span class="si"><svg><use href="#i-flask"/></svg></span><span><b>Clinical relevance of lab results</b><small>Transfusion safety and why accuracy matters</small></span><span class="status st-dev">Developing</span></li>
+          <li><span class="si"><svg><use href="#i-pen"/></svg></span><span><b>Reflective practice</b><small>Structured reflection after each new procedure</small></span><span class="status st-perf">Performed</span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <span class="mono">Development plan</span>
+        <h3>Building next</h3>
+        <ul class="next">
+          <li><span class="box" aria-hidden="true"></span><div><b>Prepare before every lab</b><small>Revise the scientific principles behind each procedure in advance.</small></div></li>
+          <li><span class="box" aria-hidden="true"></span><div><b>More supervised practice</b><small>Build familiarity with laboratory equipment through repetition.</small></div></li>
+          <li><span class="box" aria-hidden="true"></span><div><b>Ask for feedback</b><small>Request specific feedback from instructors after each session.</small></div></li>
+          <li><span class="box" aria-hidden="true"></span><div><b>Confidence, accuracy, competence</b><small>Apply biomedical knowledge to practical situations throughout medical school.</small></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="sec band" id="gallery" style="padding-bottom:clamp(56px,7vw,96px)">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:clamp(28px,4vw,44px)">
+      <div>
+        <span class="mono idx">06 / Gallery</span>
+        <h2>Slides from the lab <em>&amp; the clinic</em></h2>
+      </div>
+      <p>Five moments from the blood grouping sessions. Drag or use the arrows to move through the slides, and select one to view it full size.</p>
+    </div>
+  </div>
+  <div class="slides-wrap">
+    <div class="slides" id="slides" tabindex="0" aria-label="Photo slides">
+      <button class="slide land" data-lb="0"><img src="img/clinic-group.jpg" alt="Medical students in white coats at the GMU Clinic around a patient in a phlebotomy chair" loading="lazy" draggable="false"><span class="slabel"><i></i><span><b>Slide 01</b> · GMU Clinic</span></span><span class="scap">Observing the procedure first-hand with a patient.</span></button>
+      <button class="slide port" data-lb="1"><img src="img/portrait.jpg" alt="Akol in a lab coat holding a lancet, preparing for a finger-prick" loading="lazy" draggable="false" style="object-position:50% 25%"><span class="slabel"><i></i><span><b>Slide 02</b> · Physiology Lab</span></span><span class="scap">Gloved and ready with the lancet.</span></button>
+      <button class="slide port" data-lb="2"><img src="img/lab-sampling.jpg" alt="A gloved classmate taking a finger-prick sample as the group watches" loading="lazy" draggable="false" style="object-position:50% 40%"><span class="slabel"><i></i><span><b>Slide 03</b> · Physiology Lab</span></span><span class="scap">Supervised finger-prick at the bench.</span></button>
+      <button class="slide port" data-lb="3"><img src="img/lab-discussion.jpg" alt="Akol explaining the typing card results to classmates" loading="lazy" draggable="false" style="object-position:50% 40%"><span class="slabel"><i></i><span><b>Slide 04</b> · Physiology Lab</span></span><span class="scap">Interpreting the blood typing card.</span></button>
+      <button class="slide land" data-lb="4"><img src="img/lab-bench.jpg" alt="Akol and two classmates leaning over the bench, pointing at a sample" loading="lazy" draggable="false"><span class="slabel"><i></i><span><b>Slide 05</b> · Physiology Lab</span></span><span class="scap">Reading results at the bench with my peers.</span></button>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="slides-bar">
+      <span class="counter"><b id="slideNow">01</b> / 05</span>
+      <div class="sbar" aria-hidden="true"><i id="slideBar"></i></div>
+      <div class="arrows">
+        <button class="icon-btn" id="slPrev" aria-label="Previous slide"><svg><use href="#i-left"/></svg></button>
+        <button class="icon-btn" id="slNext" aria-label="Next slide"><svg><use href="#i-right"/></svg></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CERTIFICATES ===================== -->
+<section class="sec" id="certificates">
+  <div class="wrap cert">
+    <div class="cert-info">
+      <span class="mono idx">07 / Certificates</span>
+      <h3>HAYAT Program</h3>
+      <p>Certificate of Participation awarded to Akol Madol by Gulf Medical University.</p>
+      <dl>
+        <div><dt>Awarded by</dt><dd>Gulf Medical University</dd></div>
+        <div><dt>Signed by</dt><dd>Prof. Manda Venkatramana, Chancellor</dd></div>
+        <div><dt>Type</dt><dd>Certificate of Participation</dd></div>
+        <div><dt>Year</dt><dd>2026</dd></div>
+      </dl>
+      <button class="btn btn-ghost" data-lb="5">View full certificate <svg><use href="#i-zoom"/></svg></button>
+    </div>
+    <div class="cert-stage">
+      <button class="cert-frame" id="certFrame" data-lb="5" aria-label="Enlarge the HAYAT Program certificate">
+        <img src="img/hayat-certificate.jpg" alt="Gulf Medical University Certificate of Participation awarded to Akol Madol for participation in the HAYAT Program" loading="lazy" width="1800" height="1273">
+        <span class="glare" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CLOSING ===================== -->
+<section class="closing" aria-label="Looking ahead">
+  <div class="wrap">
+    <div class="cl-card">
+      <span class="orb o1" aria-hidden="true"></span><span class="orb o2" aria-hidden="true"></span><span class="orb o3" aria-hidden="true"></span>
+      <div>
+        <span class="mono">Looking ahead</span>
+        <h2>More confident, more accurate, <em>more competent</em> every semester.</h2>
+        <p>This portfolio grows as I progress through medical school at Gulf Medical University. New reflections, skills and certificates will be added here.</p>
+      </div>
+      <a class="btn" href="#top">Back to top <svg style="transform:rotate(-90deg)"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 Akol Madol Atak Kuot · Medical Student, Gulf Medical University, Ajman, UAE</span>
+    <nav aria-label="Footer"><a href="#profile">Profile</a><a href="#experience">Experience</a><a href="#reflection">Personal Reflection</a><a href="#lab">Lab</a><a href="#gallery">Gallery</a><a href="#certificates">Certificates</a></nav>
+  </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer" aria-hidden="true">
+  <div class="lb-top"><span class="lb-count" id="lbCount">1 / 6</span><button class="icon-btn" id="lbClose" aria-label="Close photo viewer"><svg><use href="#i-close"/></svg></button></div>
+  <div class="lb-stage" id="lbStage">
+    <button class="icon-btn" id="lbPrev" aria-label="Previous photo"><svg><use href="#i-left"/></svg></button>
+    <img id="lbImg" src="" alt="">
+    <button class="icon-btn" id="lbNext" aria-label="Next photo"><svg><use href="#i-right"/></svg></button>
+  </div>
+  <p class="lb-cap" id="lbCap"></p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touch = window.matchMedia('(hover: none)').matches;
+
+  /* ---------- shared cell sprite ---------- */
+  function makeSprite(){
+    var s=document.createElement('canvas');s.width=s.height=96;var g=s.getContext('2d'),c=48;
+    var grd=g.createRadialGradient(c,c,3,c,c,46);
+    grd.addColorStop(0,'rgba(240,247,255,0.96)');
+    grd.addColorStop(0.36,'rgba(203,227,251,0.96)');
+    grd.addColorStop(0.7,'rgba(123,178,236,0.96)');
+    grd.addColorStop(0.9,'rgba(64,132,212,0.92)');
+    grd.addColorStop(1,'rgba(64,132,212,0)');
+    g.fillStyle=grd;g.beginPath();g.arc(c,c,46,0,Math.PI*2);g.fill();
+    g.strokeStyle='rgba(255,255,255,0.6)';g.lineWidth=2.4;g.beginPath();g.arc(c-4,c-4,31,Math.PI*1.05,Math.PI*1.62);g.stroke();
+    return s;
+  }
+  var SPRITE=makeSprite();
+  function drawCell(ctx,x,y,r,a,tilt,alpha){
+    ctx.save();ctx.globalAlpha=alpha;ctx.translate(x,y);ctx.rotate(a);ctx.scale(1,tilt);
+    ctx.drawImage(SPRITE,-r,-r,r*2,r*2);ctx.restore();
+  }
+
+  /* ---------- HERO: agglutination field ---------- */
+  (function(){
+    var hero=document.getElementById('top'),cv=document.getElementById('cells');
+    if(!cv.getContext)return;
+    var ctx=cv.getContext('2d'),W=0,H=0,dpr=1,cells=[],ripples=[],attract=[],ptr={x:0,y:0,on:false},running=false,visible=true,raf=0;
+    if(touch){document.querySelector('#cellHint span').textContent='Tap the field: the cells clump together, like a positive agglutination reaction.';}
+    function size(){
+      var r=hero.getBoundingClientRect();dpr=Math.min(2,window.devicePixelRatio||1);
+      W=r.width;H=r.height;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+      var n=Math.max(22,Math.min(62,Math.round(W*H/20000)));
+      if(cells.length!==n){cells=[];for(var i=0;i<n;i++){cells.push(newCell(Math.random()*W,Math.random()*H));}}
+    }
+    function newCell(x,y){var r=7+Math.random()*13;return{x:x,y:y,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:r,a:Math.random()*6.28,va:(Math.random()-.5)*.008,tilt:.5+Math.random()*.5,agg:0,al:.5+Math.min(.42,r/40)};}
+    function step(){
+      var i,j,c,o,dx,dy,d,f,k;
+      for(i=attract.length-1;i>=0;i--){attract[i].life--;if(attract[i].life<=0)attract.splice(i,1);}
+      var srcs=attract.slice();if(ptr.on)srcs.push({x:ptr.x,y:ptr.y,R:210,s:1});
+      for(i=0;i<cells.length;i++){
+        c=cells[i];var infl=0,ax=0,ay=0;
+        for(j=0;j<srcs.length;j++){
+          var p=srcs[j];dx=p.x-c.x;dy=p.y-c.y;d=Math.sqrt(dx*dx+dy*dy)||1;
+          if(d<p.R){f=1-d/p.R;infl=Math.max(infl,f);ax+=dx/d*f*.05;ay+=dy/d*f*.05;}
+        }
+        c.agg+=((infl>.04?1:0)-c.agg)*.04;
+        c.vx+=ax+(Math.random()-.5)*.02;c.vy+=ay+(Math.random()-.5)*.02;
+      }
+      for(i=0;i<cells.length;i++){c=cells[i];
+        for(j=i+1;j<cells.length;j++){o=cells[j];
+          dx=o.x-c.x;dy=o.y-c.y;d=Math.sqrt(dx*dx+dy*dy)||.01;var min=(c.r+o.r)*.82;
+          if(d<min){k=(min-d)/d*.09;c.vx-=dx*k;c.vy-=dy*k;o.vx+=dx*k;o.vy+=dy*k;}
+          else{var ag=Math.min(c.agg,o.agg);if(ag>.25&&d<(c.r+o.r)*2.8){k=(d-min)/d*.006*ag;c.vx+=dx*k;c.vy+=dy*k;o.vx-=dx*k;o.vy-=dy*k;}}
+        }
+      }
+      for(i=0;i<cells.length;i++){c=cells[i];
+        var damp=.985-c.agg*.06;c.vx*=damp;c.vy*=damp;
+        var sp=Math.sqrt(c.vx*c.vx+c.vy*c.vy);if(sp>3){c.vx*=3/sp;c.vy*=3/sp;}
+        if(c.agg<.2&&sp<.08){c.vx+=(Math.random()-.5)*.08;c.vy+=(Math.random()-.5)*.08;}
+        c.x+=c.vx;c.y+=c.vy;c.a+=c.va*(1-c.agg);
+        var m=c.r+4;if(c.x<-m)c.x=W+m;if(c.x>W+m)c.x=-m;if(c.y<-m)c.y=H+m;if(c.y>H+m)c.y=-m;
+      }
+    }
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+      for(var i=ripples.length-1;i>=0;i--){var rp=ripples[i];rp.t+=1;var pr=rp.t/70;if(pr>=1){ripples.splice(i,1);continue;}
+        ctx.beginPath();ctx.arc(rp.x,rp.y,20+pr*170,0,Math.PI*2);ctx.strokeStyle='rgba(29,105,189,'+(0.35*(1-pr))+')';ctx.lineWidth=1.5;ctx.stroke();}
+      if(ptr.on&&!reduce){var g=ctx.createRadialGradient(ptr.x,ptr.y,0,ptr.x,ptr.y,210);g.addColorStop(0,'rgba(167,203,241,0.22)');g.addColorStop(1,'rgba(167,203,241,0)');ctx.fillStyle=g;ctx.beginPath();ctx.arc(ptr.x,ptr.y,210,0,Math.PI*2);ctx.fill();}
+      for(var j=0;j<cells.length;j++){var c=cells[j];var dim=W<1020?.5:(c.x<W*.52?.42:1);drawCell(ctx,c.x,c.y,c.r,c.a,c.tilt+(1-c.tilt)*c.agg*.4,Math.min(1,(c.al+c.agg*.25)*(dim+(1-dim)*c.agg)));}
+    }
+    function loop(){if(!running)return;step();draw();raf=requestAnimationFrame(loop);}
+    function start(){if(running||reduce||!visible||document.hidden)return;running=true;raf=requestAnimationFrame(loop);}
+    function stop(){running=false;cancelAnimationFrame(raf);}
+    size();draw();
+    window.addEventListener('resize',function(){size();if(!running)draw();});
+    hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();ptr.x=e.clientX-r.left;ptr.y=e.clientY-r.top;ptr.on=e.pointerType==='mouse';});
+    hero.addEventListener('pointerleave',function(){ptr.on=false;});
+    hero.addEventListener('pointerdown',function(e){
+      if(e.target.closest('a,button'))return;
+      var r=hero.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+      attract.push({x:x,y:y,R:170,s:1,life:260});ripples.push({x:x,y:y,t:0});
+      if(attract.length>4)attract.shift();
+    });
+    if('IntersectionObserver' in window){new IntersectionObserver(function(en){visible=en[0].isIntersecting;visible?start():stop();}).observe(hero);}
+    document.addEventListener('visibilitychange',function(){document.hidden?stop():start();});
+    start();
+  })();
+
+  /* ---------- NAV ---------- */
+  var nav=document.getElementById('nav'),menuBtn=document.getElementById('menuBtn'),links=document.getElementById('navLinks'),blob=document.getElementById('blob');
+  menuBtn.addEventListener('click',function(){var o=links.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o?'true':'false');menuBtn.setAttribute('aria-label',o?'Close menu':'Open menu');});
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>30);},{passive:true});
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click',function(e){
+      var id=a.getAttribute('href').slice(1),t=document.getElementById(id);if(!t)return;e.preventDefault();
+      links.classList.remove('open');menuBtn.setAttribute('aria-expanded','false');
+      t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+    });
+  });
+  var spyLinks=[].slice.call(document.querySelectorAll('[data-spy]'));
+  function setActive(id){
+    var hit=null;spyLinks.forEach(function(l){var on=l.getAttribute('data-spy')===id;l.classList.toggle('active',on);if(on)hit=l;});
+    if(hit&&!hit.classList.contains('cta')){blob.style.opacity='1';blob.style.left=hit.parentNode.offsetLeft+'px';blob.style.width=hit.offsetWidth+'px';}
+    else{blob.style.opacity='0';}
+  }
+  if('IntersectionObserver' in window){
+    var seen={};
+    var io=new IntersectionObserver(function(en){
+      en.forEach(function(x){seen[x.target.id]=x.isIntersecting?x.intersectionRect.height:0;});
+      var best=null,bh=0;for(var k in seen){if(seen[k]>bh){bh=seen[k];best=k;}}
+      setActive(best);
+    },{threshold:[0,.1,.25,.5,.75,1],rootMargin:'-80px 0px -35% 0px'});
+    ['top','profile','experience','reflection','lab','skills','gallery','certificates'].forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});
+  }
+
+  /* ---------- REFLECTION: reading time, progress ring, highlights ---------- */
+  var essay=document.getElementById('essay');
+  try{var words=0;essay.querySelectorAll('p').forEach(function(p){words+=p.textContent.trim().split(/\s+/).length;});document.getElementById('readTime').textContent=Math.max(1,Math.round(words/200))+' min read';}catch(e){}
+  var ring=document.getElementById('progRing'),num=document.getElementById('progNum'),C=2*Math.PI*26;
+  function prog(){
+    var r=essay.getBoundingClientRect(),vh=window.innerHeight;
+    var p=(vh*.55-r.top)/(r.height);p=Math.max(0,Math.min(1,p));
+    ring.style.strokeDashoffset=(C*(1-p)).toFixed(1);num.textContent=Math.round(p*100)+'%';
+  }
+  window.addEventListener('scroll',prog,{passive:true});window.addEventListener('resize',prog);prog();
+  if(!reduce&&'IntersectionObserver' in window){
+    var marks=[].slice.call(document.querySelectorAll('.essay mark'));
+    marks.forEach(function(m){var r=m.getBoundingClientRect();if(r.top>window.innerHeight*.85)m.classList.add('pre');});
+    var mio=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.remove('pre');mio.unobserve(x.target);}});},{rootMargin:'0px 0px -18% 0px'});
+    marks.forEach(function(m){mio.observe(m);});
+  }
+
+  /* ---------- LAB: typing bench ---------- */
+  (function(){
+    var samples=[{abo:'A',rh:true},{abo:'O',rh:false},{abo:'B',rh:true},{abo:'AB',rh:true}];
+    var all=[];['O','A','B','AB'].forEach(function(a){all.push({abo:a,rh:true});all.push({abo:a,rh:false});});
+    var current=samples[0],label='Sample 01';
+    var wells=[].slice.call(document.querySelectorAll('.well-btn')).map(function(btn){
+      return{btn:btn,cv:btn.querySelector('canvas'),ab:btn.getAttribute('data-ab'),st:btn.querySelector('.ws'),state:'idle',cells:[],rip:0,size:0};
+    });
+    var rType=document.getElementById('rType'),rName=document.getElementById('rName'),rLine=document.getElementById('rLine'),rNote=document.getElementById('rNote'),cardSample=document.getElementById('cardSample');
+    function sizeWell(w){
+      var css=w.cv.getBoundingClientRect().width||160,d=Math.min(2,window.devicePixelRatio||1);
+      w.size=css;w.cv.width=Math.round(css*d);w.cv.height=Math.round(css*d);w.ctx=w.cv.getContext('2d');w.ctx.setTransform(d,0,0,d,0,0);
+    }
+    function seed(w){
+      var R=w.size/2-12,n=Math.round(52*(w.size/180)+14);w.cells=[];
+      for(var i=0;i<n;i++){var a=Math.random()*6.283,rr=Math.sqrt(Math.random())*(R-6);var x=w.size/2+Math.cos(a)*rr,y=w.size/2+Math.sin(a)*rr;
+        w.cells.push({x:x,y:y,hx:x,hy:y,tx:x,ty:y,r:3.6+Math.random()*1.8,a:Math.random()*6.28,tilt:.55+Math.random()*.4});}
+    }
+    function clump(w){
+      var R=w.size/2-12,k=4+Math.floor(Math.random()*3),centers=[];
+      for(var i=0;i<k;i++){var a=i/k*6.283+Math.random()*.6,rr=R*(.25+Math.random()*.38);centers.push({x:w.size/2+Math.cos(a)*rr,y:w.size/2+Math.sin(a)*rr,n:0});}
+      w.cells.forEach(function(c){var best=0,bd=1e9;centers.forEach(function(ce,j){var dd=(ce.x-c.x)*(ce.x-c.x)+(ce.y-c.y)*(ce.y-c.y);if(dd<bd){bd=dd;best=j;}});
+        var ce=centers[best],idx=ce.n++,ang=idx*2.399,rad=Math.sqrt(idx)*c.r*1.25;c.tx=ce.x+Math.cos(ang)*rad;c.ty=ce.y+Math.sin(ang)*rad;});
+    }
+    function drawWell(w){
+      var g=w.ctx,s=w.size,c0=s/2,R=s/2-3;g.clearRect(0,0,s,s);
+      var bg=g.createRadialGradient(c0,c0*0.9,4,c0,c0,R);bg.addColorStop(0,'#FFFFFF');bg.addColorStop(.75,'#F1F7FE');bg.addColorStop(1,'#DCEBFB');
+      g.fillStyle=bg;g.beginPath();g.arc(c0,c0,R,0,Math.PI*2);g.fill();
+      g.lineWidth=1.5;g.strokeStyle=w.state==='pos'?'rgba(29,105,189,.75)':'rgba(167,203,241,1)';g.stroke();
+      g.save();g.beginPath();g.arc(c0,c0,R-1,0,Math.PI*2);g.clip();
+      if(w.state==='idle'){g.setLineDash([3,5]);g.strokeStyle='rgba(29,105,189,.28)';g.beginPath();g.arc(c0,c0,R-12,0,Math.PI*2);g.stroke();g.setLineDash([]);}
+      for(var i=0;i<w.cells.length;i++){var c=w.cells[i];drawCell(g,c.x,c.y,c.r,c.a,c.tilt,w.state==='idle'?.55:.92);}
+      if(w.rip>0){var pr=1-w.rip/50;g.beginPath();g.arc(c0,c0,6+pr*R,0,Math.PI*2);g.strokeStyle='rgba(29,105,189,'+(.5*(1-pr))+')';g.lineWidth=2;g.stroke();w.rip--;}
+      g.restore();
+    }
+    function tick(w){
+      w.cells.forEach(function(c){
+        var j=w.state==='pos'?.06:.32;
+        if(w.state!=='pos'){c.tx=c.hx+(Math.random()-.5)*3;c.ty=c.hy+(Math.random()-.5)*3;}
+        c.x+=(c.tx-c.x)*(w.state==='pos'?.045:.03)+(Math.random()-.5)*j;c.y+=(c.ty-c.y)*(w.state==='pos'?.045:.03)+(Math.random()-.5)*j;
+        if(w.state!=='pos')c.a+=.004;
+      });
+    }
+    function has(ab){if(ab==='D')return current.rh;return current.abo.indexOf(ab)!==-1;}
+    function add(w){
+      if(w.state!=='idle')return;
+      var pos=has(w.ab);w.rip=50;w.state=pos?'pos':'neg';
+      w.st.textContent=pos?'Agglutination':'No agglutination';w.st.className='ws'+(pos?' pos':'');
+      w.btn.disabled=true;w.btn.setAttribute('aria-label',(w.ab==='D'?'Anti-D':'Anti-'+w.ab)+': '+(pos?'agglutination':'no agglutination'));
+      if(pos)setTimeout(function(){clump(w);},reduce?0:420);
+      if(reduce){if(pos){w.cells.forEach(function(c){c.x=c.tx;c.y=c.ty;});}}
+      render();result();
+    }
+    function result(){
+      if(wells.some(function(w){return w.state==='idle';})){
+        var done=wells.filter(function(w){return w.state!=='idle';}).length;
+        rType.textContent='?';rType.className='rtype wait';rName.textContent=done+' of 3 reagents added';rLine.textContent='Add the remaining reagents to read the group.';rNote.innerHTML='';return;
+      }
+      var t=current.abo+(current.rh?'+':'−');
+      rType.textContent=t;rType.className='rtype';
+      rName.textContent='Group '+current.abo+', RhD '+(current.rh?'positive':'negative');
+      var A=has('A'),B=has('B');
+      var pos=[],neg=[];[['Anti-A',A],['Anti-B',B],['Anti-D',current.rh]].forEach(function(x){(x[1]?pos:neg).push(x[0]);});
+      var line=(pos.length?'Clumped with '+pos.join(' and '):'No clumping with any antiserum')+(neg.length&&pos.length?'; smooth with '+neg.join(' and '):'')+'. ';
+      var donorsABO={O:['O'],A:['A','O'],B:['B','O'],AB:['AB','A','B','O']}[current.abo];
+      var donorsRh=current.rh?['+','−']:['−'];var d=[];donorsABO.forEach(function(a){donorsRh.forEach(function(r){d.push(a+r);});});
+      rLine.textContent=line+'Can receive red cells from '+d.join(', ')+'.';
+      rNote.innerHTML='';
+      var note=t==='O−'?'Universal red cell donor':(t==='AB+'?'Universal red cell recipient':'');
+      if(note){var s=document.createElement('span');s.className='rnote';s.textContent=note;rNote.appendChild(s);}
+    }
+    function reset(){
+      wells.forEach(function(w){w.state='idle';w.rip=0;w.btn.disabled=false;w.st.textContent='Select to add';w.st.className='ws';
+        w.btn.setAttribute('aria-label','Add '+(w.ab==='D'?'Anti-D':'Anti-'+w.ab)+' to the well');seed(w);});
+      cardSample.textContent=label;result();render();
+    }
+    function render(){wells.forEach(drawWell);}
+    var running=false,vis=false;
+    function loop(){if(!running)return;wells.forEach(tick);render();requestAnimationFrame(loop);}
+    function go(){if(running||reduce||!vis)return;running=true;requestAnimationFrame(loop);}
+    wells.forEach(function(w){sizeWell(w);seed(w);w.btn.addEventListener('click',function(){add(w);});});
+    render();result();
+    window.addEventListener('resize',function(){wells.forEach(function(w){var old=w.size;sizeWell(w);if(Math.abs(old-w.size)>1){var f=w.size/old;w.cells.forEach(function(c){c.x*=f;c.y*=f;c.hx*=f;c.hy*=f;c.tx*=f;c.ty*=f;});}});render();});
+    if('IntersectionObserver' in window){new IntersectionObserver(function(en){vis=en[0].isIntersecting;if(vis)go();else running=false;}).observe(document.querySelector('.typing-card'));}
+    document.getElementById('addAll').addEventListener('click',function(){wells.forEach(function(w,i){setTimeout(function(){add(w);},reduce?0:i*260);});});
+    document.getElementById('resetCard').addEventListener('click',reset);
+    [].slice.call(document.querySelectorAll('.sample')).forEach(function(b){
+      b.addEventListener('click',function(){
+        document.querySelectorAll('.sample').forEach(function(x){x.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');
+        var s=b.getAttribute('data-s');
+        if(s==='r'){current=all[Math.floor(Math.random()*all.length)];label='Mystery sample';}else{current=samples[+s];label='Sample 0'+(+s+1);}
+        reset();
+      });
+    });
+  })();
+
+  /* ---------- GALLERY slides ---------- */
+  (function(){
+    var sl=document.getElementById('slides'),now=document.getElementById('slideNow'),bar=document.getElementById('slideBar');
+    var items=[].slice.call(sl.querySelectorAll('.slide'));
+    function upd(){
+      var max=sl.scrollWidth-sl.clientWidth,p=max>0?sl.scrollLeft/max:0;
+      var idx=Math.round(p*(items.length-1));now.textContent=('0'+(idx+1)).slice(-2);bar.style.width=(20+p*80)+'%';
+    }
+    sl.addEventListener('scroll',upd,{passive:true});upd();
+    function stepBy(dir){var w=items[0].getBoundingClientRect().width+18;sl.scrollBy({left:dir*w,behavior:reduce?'auto':'smooth'});}
+    document.getElementById('slPrev').addEventListener('click',function(){stepBy(-1);});
+    document.getElementById('slNext').addEventListener('click',function(){stepBy(1);});
+    var down=false,sx=0,sl0=0,moved=0;
+    sl.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;down=true;moved=0;sx=e.clientX;sl0=sl.scrollLeft;});
+    window.addEventListener('pointermove',function(e){if(!down)return;var dx=e.clientX-sx;moved=Math.max(moved,Math.abs(dx));if(moved>5){sl.classList.add('drag');sl.scrollLeft=sl0-dx;}});
+    window.addEventListener('pointerup',function(){if(!down)return;down=false;setTimeout(function(){sl.classList.remove('drag');},30);});
+    sl.addEventListener('click',function(e){if(moved>5){e.stopPropagation();e.preventDefault();moved=0;}},true);
+  })();
+
+  /* ---------- CERTIFICATE tilt ---------- */
+  (function(){
+    var f=document.getElementById('certFrame');if(reduce||touch)return;
+    f.addEventListener('pointermove',function(e){var r=f.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      f.style.transform='rotateY('+((x-.5)*10).toFixed(2)+'deg) rotateX('+((.5-y)*8).toFixed(2)+'deg)';f.style.setProperty('--gx',(x*100)+'%');f.style.setProperty('--gy',(y*100)+'%');});
+    f.addEventListener('pointerleave',function(){f.style.transform='';});
+  })();
+
+  /* ---------- LIGHTBOX ---------- */
+  (function(){
+    var items=[
+      {src:'img/clinic-group.jpg',cap:'With classmates at the GMU Clinic, observing the procedure first-hand with a patient.'},
+      {src:'img/portrait.jpg',cap:'Gloved and ready with the lancet before a finger-prick, Physiology Laboratory.'},
+      {src:'img/lab-sampling.jpg',cap:'Supervised finger-prick sampling during the blood grouping practical.'},
+      {src:'img/lab-discussion.jpg',cap:'Talking through the blood typing card with my lab group.'},
+      {src:'img/lab-bench.jpg',cap:'Reading results at the bench with my peers.'},
+      {src:'img/hayat-certificate.jpg',cap:'Certificate of Participation, HAYAT Program, Gulf Medical University.'}
+    ];
+    var lb=document.getElementById('lb'),img=document.getElementById('lbImg'),cap=document.getElementById('lbCap'),cnt=document.getElementById('lbCount'),pos=0,last=null;
+    function show(i){pos=(i+items.length)%items.length;var it=items[pos];img.style.animation='none';void img.offsetWidth;img.style.animation='';img.src=it.src;img.alt=it.cap;cap.textContent=it.cap;cnt.textContent=(pos+1)+' / '+items.length;}
+    function open(i){last=document.activeElement;show(i);lb.classList.add('open');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('lbClose').focus();}
+    function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');document.body.style.overflow='';if(last)last.focus();}
+    document.querySelectorAll('[data-lb]').forEach(function(el){el.addEventListener('click',function(){open(parseInt(el.getAttribute('data-lb'),10));});});
+    document.getElementById('lbClose').addEventListener('click',close);
+    document.getElementById('lbPrev').addEventListener('click',function(){show(pos-1);});
+    document.getElementById('lbNext').addEventListener('click',function(){show(pos+1);});
+    lb.addEventListener('click',function(e){if(e.target===lb||e.target.id==='lbStage')close();});
+    document.addEventListener('keydown',function(e){if(!lb.classList.contains('open'))return;if(e.key==='Escape')close();else if(e.key==='ArrowLeft')show(pos-1);else if(e.key==='ArrowRight')show(pos+1);});
+    var tx=0;lb.addEventListener('touchstart',function(e){tx=e.touches[0].clientX;},{passive:true});
+    lb.addEventListener('touchend',function(e){var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)show(pos+(dx<0?1:-1));},{passive:true});
+  })();
+})();
+</script>
+</body>
+</html>
