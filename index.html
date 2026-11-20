@@ -104,7 +104,7 @@ p{margin:0}
 .float .fi svg{width:18px;height:18px}
 .float b{display:block;font-size:14px}
 .float span{color:var(--muted);font-size:12.5px}
-.f1{left:-8%;top:26%;animation:bob 6s ease-in-out infinite}
+.f1{left:14%;bottom:3%;animation:bob 6s ease-in-out infinite}
 .f2{right:-10%;top:56%;animation:bob 7s ease-in-out -2s infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 .scroll-cue{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10.5px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase}
@@ -420,6 +420,9 @@ footer{border-top:1px solid var(--line);padding:28px 0 36px;color:var(--muted);f
 .cmid a{font-size:14.5px;font-weight:600}
 
 /* ================= RESPONSIVE ================= */
+@media (max-width:1300px) and (min-width:1021px){
+  .f2{right:0}
+}
 @media (max-width:1080px){
   .links a{padding:8px 10px}
   .brand b{display:none}
@@ -427,7 +430,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 36px;color:var(--muted);f
 @media (max-width:1020px){
   .hero-in{grid-template-columns:1fr;min-height:0;padding-bottom:0}
   .figure{position:relative;right:auto;margin:30px auto 0;height:clamp(440px,95vw,600px)}
-  .f1{left:-6%}.f2{right:-4%}
+  .f1{left:12%}.f2{right:-4%}
   .scroll-cue{display:none}
   .sec-head,.exp,.reflection,.bench,.cert,.profile{grid-template-columns:1fr}
   .exp-side,.casefile{position:static}
@@ -460,7 +463,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 36px;color:var(--muted);f
   .vitals div:nth-child(3){border-right:1px solid var(--line)}
   .float{font-size:12px;padding:8px 10px 8px 8px}
   .float .fi{width:28px;height:28px}
-  .f1{left:-2%;top:22%}.f2{right:-2%;top:64%}
+  .f1{left:6%;bottom:2%}.f2{right:-2%;top:56%}
   .entries::before{left:-18px}
   .entry::before{left:-24px}
   .entries{margin-left:18px}
